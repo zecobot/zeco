@@ -6,6 +6,7 @@ const {
   MessageButton,
   Collector,
   ButtonInteraction,
+  MessageEmbed,
 } = require("discord.js");
 
 cache = [];
@@ -162,9 +163,12 @@ module.exports = {
 
       // timeRem = endDate - currentDate
       // endDate = endDate.toString()
-      helpMessage = await textChannel.send({
-        content: `Pvc ends <t:${endDate}:R>`,
-      }); //embed bhi add krna help vaala
+
+      const helpEmbed = new MessageEmbed()
+        .setTitle(`${message.author.username}'s Private Channel`)
+        .setDescription(`Pvc ends <t:${endDate}:R>`);
+
+      helpMessage = await textChannel.send({ embeds: [helpEmbed] }); //embed bhi add krna help vaala
       await helpMessage.pin();
       textId = textChannel.id;
       vcId = voiceChannel.id;
