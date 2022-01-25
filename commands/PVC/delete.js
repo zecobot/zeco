@@ -99,7 +99,7 @@ module.exports = {
       });
 
       await economy.addCoins({ guildId, userId, coins: refund });
-      await pvcsys.deletePVC({ guildId, userId });
+      await pvcsys.deletePVC({ guildId, textId: result.textId });
       txt = await client.channels.fetch(result.textId);
       vc = await client.channels.fetch(result.vcId);
       await txt.delete();
